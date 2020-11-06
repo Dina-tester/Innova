@@ -11,15 +11,4 @@ import cucumber.api.junit.Cucumber;
 		plugin = { "pretty","html:target\\ht.html" ,"json:target\\report.json"})//tags = {"@task-2"}
 
 public class Testrunner {
-
-
 }
-
-
-
-
-
-/*
- * 
- * ///road //dsf dsf sdf/s dfsad f/sd f/ sdf/ ds/f
- */
