@@ -13,20 +13,20 @@ public class LoginPage extends BaseClass {
 
 	public LoginPage() {
 		PageFactory.initElements(driver, this);
-	
+
 	}
-	
+
 	@FindBy(xpath = "//*[@name='email']")
 	private WebElement name;
-	
+
 	@FindBy(name = "password")
 	private WebElement password;
-	
-	@FindBy(xpath ="//*[text()='Login']")
+
+	@FindBy(xpath = "//*[text()='Login']")
 	private WebElement LoginButton;
-	
-	@FindBy(xpath ="//p[text()='Invalid login']")
-	private WebElement Invalidlogin; 
+
+	@FindBy(xpath = "//p[text()='Invalid login']")
+	private WebElement Invalidlogin;
 
 	public WebElement getName() {
 		return name;
@@ -40,9 +40,8 @@ public class LoginPage extends BaseClass {
 		return password;
 	}
 
-	public  WebElement getLoginButton() {
+	public WebElement getLoginButton() {
 		return LoginButton;
 	}
-	
-	
+
 }

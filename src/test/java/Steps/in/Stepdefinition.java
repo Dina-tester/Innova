@@ -70,55 +70,62 @@ public class Stepdefinition extends BaseClass {
 		String text = failerrmsg.getText();
 		Assert.assertEquals(text, "Invalid login");
 		close();
-		
+
 	}
-	
+
 	@When("I click on Task tab and I fill and save TaskDetails in Create NewTask page")
 	public void i_click_on_Task_tab_and_I_fill_and_save_TaskDetails_in_Create_NewTask_page() throws Throwable {
-		LoginPage login = new LoginPage();Taskpage task=new Taskpage();	
+		LoginPage login = new LoginPage();
+		Taskpage task = new Taskpage();
 		filltxtbox(login.getName(), "dlgcdina@gmail.com");
 		filltxtbox(login.getPassword(), "Dinesh@01");
 		bclick(login.getLoginButton());
-		Thread.sleep(2000);	bclick(task.getTask());
-		WebElement newTaskButton = task.getNewTask();bclick(newTaskButton);
 		Thread.sleep(2000);
-		
+		bclick(task.getTask());
+		WebElement newTaskButton = task.getNewTask();
+		bclick(newTaskButton);
+		Thread.sleep(2000);
+
 		String title = readfromExcel(1, 0, "Taskdetails");
 		filltxtbox(task.getTitle(), title);
-		
+
 		String assignedTo = readfromExcel(1, 1, "Taskdetails");
 		filltxtbox(task.getAssignedTo(), assignedTo);
-		
+
 		bclick(task.getDueDate());
-		 WebElement dueDate = driver.findElement(By.xpath("//*[text()='11']"));
-		 bclick(dueDate);
-	
-		 bclick(task.getClosedate());
-		 WebElement closedate = driver.findElement(By.xpath("//*[text()='23']"));
-		 bclick(closedate);
-		 
-		
+		WebElement dueDate = driver.findElement(By.xpath("//*[text()='11']"));
+		bclick(dueDate);
+
+		bclick(task.getClosedate());
+		WebElement closedate = driver.findElement(By.xpath("//*[text()='23']"));
+		bclick(closedate);
+
 		String description = readfromExcel(1, 5, "Taskdetails");
 		filltxtbox(task.getDescription(), description);
-		
+
 		bclick(task.getSavetask());
-			
+
 	}
 
 	@Then("verify created task is present in tasktable")
 	public void verify_created_task_is_present_in_tasktable() throws Throwable {
-		Taskpage task=new Taskpage();Thread.sleep(2000);	bclick(task.getTask());
+		Taskpage task = new Taskpage();
+		Thread.sleep(2000);
+		bclick(task.getTask());
 		Thread.sleep(2000);
 		WebElement tasktitle = task.getAppoinmenttask();
 		String titlename = tasktitle.getText();
-		Assert.assertEquals(titlename,"AppoinmentBooking");Thread.sleep(3000);
+		Assert.assertEquals(titlename, "AppoinmentBooking");
+		Thread.sleep(3000);
 		close();
 	}
 
 	@Given("I am in taskdetails page")
 	public void i_am_in_taskdetails_page() throws Throwable {
-		launchBrowser();launchUrl("https://ui.freecrm.com/");
-		LoginPage login = new LoginPage();Taskpage task=new Taskpage();
+		launchBrowser();
+		launchUrl("https://ui.freecrm.com/");
+		LoginPage login = new LoginPage();
+		Taskpage task = new Taskpage();
 		Thread.sleep(2000);
 		String Username = readfromExcel(1, 0, "Loginsheet");
 		filltxtbox(login.getName(), Username);
@@ -126,28 +133,37 @@ public class Stepdefinition extends BaseClass {
 		String Password = readfromExcel(1, 1, "Loginsheet");
 		filltxtbox(login.getPassword(), Password);
 
-		bclick(login.getLoginButton());;Thread.sleep(2000);bclick(task.getTask());
-	
+		bclick(login.getLoginButton());
+		;
+		Thread.sleep(2000);
+		bclick(task.getTask());
+
 	}
 
 	@When("I click on edit tasktable and edit taskdetails")
 	public void i_click_on_edit_tasktable_and_edit_taskdetails() throws Throwable {
-		Taskpage task=new Taskpage();Thread.sleep(2000);
-		bclick(task.getEditTasktable());bclick(task.getTypefield());Thread.sleep(2000);
+		Taskpage task = new Taskpage();
+		Thread.sleep(2000);
+		bclick(task.getEditTasktable());
+		bclick(task.getTypefield());
+		Thread.sleep(2000);
 		bclick(task.getTasktypeselection());
 		bclick(task.getStatus());
-		bclick(task.getStatusselection());bclick(task.getSavetask());
+		bclick(task.getStatusselection());
+		bclick(task.getSavetask());
 	}
 
 	@Then("verify the edited task view in tasklist")
 	public void verify_the_edited_task_view_in_tasklist() throws Throwable {
-		Taskpage task=new Taskpage();Thread.sleep(1000);	bclick(task.getTask());
+		Taskpage task = new Taskpage();
+		Thread.sleep(1000);
+		bclick(task.getTask());
 		Thread.sleep(2000);
 		WebElement verfiyedited = task.getVerifyTypefield();
 		String validateeditedfield = verfiyedited.getText();
-		Assert.assertEquals(validateeditedfield,"Customer Support");Thread.sleep(3000);
+		Assert.assertEquals(validateeditedfield, "Customer Support");
+		Thread.sleep(3000);
 		close();
 	}
-	
-	
+
 }
